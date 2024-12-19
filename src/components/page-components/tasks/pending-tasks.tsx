@@ -2,6 +2,7 @@ import { TfiMore } from "react-icons/tfi";
 import { FaRegCircle } from "react-icons/fa";
 import {MdOutlinePendingActions} from "react-icons/md";
 import {IoIosAdd} from "react-icons/io";
+import Image from "next/image";
 
 const PendingTasks = () => {
     const tasks = [
@@ -11,7 +12,7 @@ const PendingTasks = () => {
             priority: "Moderate",
             status: "Not Started",
             createdOn: "2024-12-12",
-            imageSrc: "https://via.placeholder.com/150",
+            imageSrc: "https://via.placeholder.com/150https://unsplash.com/@jayson_hinrichsen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         },
         {
             title: "Fix Login Issue",
@@ -19,7 +20,7 @@ const PendingTasks = () => {
             priority: "High",
             status: "Pending",
             createdOn: "2024-12-15",
-            imageSrc: "https://via.placeholder.com/150",
+            imageSrc: "https://unsplash.com/@jayson_hinrichsen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
         },
     ];
 
@@ -37,13 +38,13 @@ const PendingTasks = () => {
     const getPriorityColor = (priority: string) => {
         switch (priority) {
             case "High":
-                return "text-red-500"; // Red for high priority
+                return "text-red-500";
             case "Moderate":
-                return "text-blue-300"; // Light blue for moderate
+                return "text-blue-300";
             case "Low":
-                return "text-green-300"; // Light green for low
+                return "text-green-300";
             default:
-                return "text-gray-500"; // Default gray
+                return "text-gray-500";
         }
     };
 
@@ -69,10 +70,12 @@ const PendingTasks = () => {
                         <div className="flex items-center gap-2 mt-2">
                             <div className="text-gray-600">{task.description}</div>
                             {task.imageSrc && (
-                                <img
+                                <Image
                                     src={task.imageSrc}
+                                    width={36}
+                                    height={36}
                                     alt={task.title}
-                                    className="w-10 h-10 rounded-full"
+                                    className="w-10 h-10 rounded-md"
                                 />
                             )}
                         </div>
