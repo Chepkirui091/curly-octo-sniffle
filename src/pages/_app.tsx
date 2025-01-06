@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <TopNav />
 
                 {/* Main Content and Sidebar */}
-                <div className="flex flex-1 overflow-hidden">
+                <div className="flex flex-1 overflow-hidden dark:bg-darkBackground">
                     <Sidebar />
                     <main className="flex-1 p-6 overflow-auto">
                         <Component {...pageProps} />

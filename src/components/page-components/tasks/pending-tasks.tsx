@@ -22,6 +22,22 @@ const PendingTasks = () => {
             createdOn: "2024-12-15",
             imageSrc: "/static/daph.jpg",
         },
+        {
+            title: "Fix Login Issue",
+            description: "Resolve the bug causing login failures for certain users.",
+            priority: "High",
+            status: "Pending",
+            createdOn: "2024-12-15",
+            imageSrc: "/static/daph.jpg",
+        },
+        {
+            title: "Fix Login Issue",
+            description: "Resolve the bug causing login failures for certain users.",
+            priority: "High",
+            status: "Pending",
+            createdOn: "2024-12-15",
+            imageSrc: "/static/daph.jpg",
+        },
     ];
 
     const getStatusColor = (status: string) => {
@@ -81,14 +97,14 @@ const PendingTasks = () => {
                         </div>
                         <div className="flex flex-wrap gap-4 mt-2 text-sm">
                             <div className="flex items-center gap-1">
-                                <span className="text-black font-medium">Priority:</span>
+                                <span className=" font-medium">Priority:</span>
                                 <span className={`${getPriorityColor(task.priority)}`}>{task.priority}</span>
                             </div>
                             <div className="flex items-center gap-1">
-                                <span className="text-black font-medium">Status:</span>
+                                <span className=" font-medium">Status:</span>
                                 <span className={`${getStatusColor(task.status)}`}>{task.status}</span>
                             </div>
-                            <div className="text-gray-500">Created on: {task.createdOn}</div>
+                            <div className="text-gray-500 text-sm">Created on: {task.createdOn}</div>
                         </div>
                     </div>
                     <TfiMore className="cursor-pointer"/>

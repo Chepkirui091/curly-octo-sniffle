@@ -10,7 +10,7 @@ const CompletedTasks = () => {
             description: "Prepare slides for the upcoming design review meeting.",
             priority: "Low",
             status: "Completed",
-            createdOn: "2024-12-10",
+            createdOn: "2025-1-1",
             imageSrc: "/static/woman.jpg",
         },
         {
@@ -22,6 +22,14 @@ const CompletedTasks = () => {
             imageSrc: "/static/daph.jpg",
         },
     ];
+
+    const calculateDaysAgo = (createdOn: string) => {
+        const createdDate = new Date(createdOn);
+        const currentDate = new Date();
+        const timeDiff = currentDate.getTime() - createdDate.getTime();
+        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24)); // Convert milliseconds to days
+        return daysDiff;
+    };
 
     const getStatusColor = (status: string) => {
         switch (status) {
@@ -71,15 +79,18 @@ const CompletedTasks = () => {
                         </div>
                         <div className="flex flex-wrap gap-4 mt-2 text-sm">
                             <div className="flex items-center gap-1">
-                                <span className="text-black font-medium">Priority:</span>
+                                <span className="font-medium">Priority:</span>
                                 <span className={`${getPriorityColor(task.priority)}`}>{task.priority}</span>
                             </div>
                             <div className="flex items-center gap-1">
-                                <span className="text-black font-medium">Status:</span>
+                                <span className="font-medium">Status:</span>
                                 <span className={`${getStatusColor(task.status)}`}>{task.status}</span>
                             </div>
-                            <div className="text-gray-500">Created on: {task.createdOn}</div>
                         </div>
+                        <div className="text-gray-500 text-sm">
+                            Completed: {calculateDaysAgo(task.createdOn)} days ago
+                        </div>
+
                     </div>
                     <TfiMore className="cursor-pointer"/>
                 </div>

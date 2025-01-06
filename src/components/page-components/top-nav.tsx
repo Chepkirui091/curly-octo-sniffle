@@ -40,7 +40,7 @@ const TopNav = () => {
 
 
                 <div className="text-sm">
-                    <p className="text-black dark:text-gray-400 ">{dayOfWeek}</p>
+                    <p className="dark:text-gray-400 ">{dayOfWeek}</p>
                     <p className="text-[#3ABEFF]">{date}</p>
                 </div>
             </div>

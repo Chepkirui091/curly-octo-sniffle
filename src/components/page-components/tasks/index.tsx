@@ -6,13 +6,13 @@ import TaskProgress from "@/components/page-components/tasks/task-progress";
 const ToDoTasks = () => {
     return (
         <>
-            <div className="flex space-x-2 text-4xl m-12 font-bold">
+            <div className="flex space-x-2 text-4xl m-12 font-bold ">
                 <h1>Welcome back, amanuel </h1>
                 <MdWavingHand className="text-yellow-400" />
             </div>
-            <div className="flex justify-between  items-center border border-[#A1A3AB] p-8 m-12">
+            <div className="flex justify-between space-x-8  items-start border border-[#A1A3AB] p-8 m-12">
                 <PendingTasks/>
-                <div className="flex flex-col p-8 space-y-4">
+                <div className="flex flex-col left-6 space-y-4">
                     <TaskProgress />
                     <CompletedTasks/>
                 </div>
