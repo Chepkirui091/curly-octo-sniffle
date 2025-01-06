@@ -1,7 +1,7 @@
 import { TfiMore } from "react-icons/tfi";
 import { FaRegCircle } from "react-icons/fa";
-import {MdOutlinePendingActions} from "react-icons/md";
-import {IoIosAdd} from "react-icons/io";
+import {LuClipboardCheck} from "react-icons/lu";
+import Image from "next/image";
 
 const CompletedTasks = () => {
     const tasks = [
@@ -11,7 +11,15 @@ const CompletedTasks = () => {
             priority: "Low",
             status: "Completed",
             createdOn: "2024-12-10",
-            imageSrc: "https://via.placeholder.com/150",
+            imageSrc: "/static/woman.jpg",
+        },
+        {
+            title: "Design Review Meeting",
+            description: "Prepare slides for the upcoming design review meeting.",
+            priority: "Low",
+            status: "Completed",
+            createdOn: "2024-12-10",
+            imageSrc: "/static/daph.jpg",
         },
     ];
 
@@ -38,20 +46,13 @@ const CompletedTasks = () => {
     };
 
     return (
-        <div className="space-y-4">
-            <div className="flex items-center justify-between">
+        <div className="space-y-4 shadow-md p-6 rounded-2xl ">
                 <div className="flex">
-                    <MdOutlinePendingActions className="text-gray-400 text-xl "/>
-                    <span className="ml-2 text-[#FF6767]">To-Do</span>
+                    <LuClipboardCheck className="text-gray-400 text-xl "/>
+                    <span className="ml-2 text-[#FF6767]">Completed</span>
                 </div>
-                <div className="flex">
-                    <IoIosAdd className="text-[#FF6767] text-xl "/>
-                    <span className="ml-2 text-gray-400 ">Add Task</span>
-                </div>
-            </div>
-            <h2 className="font-semibold text-xl">Completed Tasks</h2>
             {tasks.map((task, index) => (
-                <div key={index} className="border-2 border-black p-4 flex justify-between items-start">
+                <div key={index} className="border border-[#A1A3AB] rounded-2xl p-4 flex justify-between items-start">
                     {/* Circle matching status */}
                     <FaRegCircle className={`mt-1 ${getStatusColor(task.status)}`}/>
                     <div className="flex-1 px-4">
@@ -59,10 +60,12 @@ const CompletedTasks = () => {
                         <div className="flex items-center gap-2 mt-2">
                             <div className="text-gray-600">{task.description}</div>
                             {task.imageSrc && (
-                                <img
+                                <Image
                                     src={task.imageSrc}
                                     alt={task.title}
-                                    className="w-10 h-10 rounded-full"
+                                    width={80}
+                                    height={60}
+                                    className="w-20 h-20 rounded-md"
                                 />
                             )}
                         </div>

@@ -12,7 +12,7 @@ const PendingTasks = () => {
             priority: "Moderate",
             status: "Not Started",
             createdOn: "2024-12-12",
-            imageSrc: "https://via.placeholder.com/150https://unsplash.com/@jayson_hinrichsen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+            imageSrc: "/static/woman.jpg",
         },
         {
             title: "Fix Login Issue",
@@ -20,7 +20,7 @@ const PendingTasks = () => {
             priority: "High",
             status: "Pending",
             createdOn: "2024-12-15",
-            imageSrc: "https://unsplash.com/@jayson_hinrichsen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+            imageSrc: "/static/daph.jpg",
         },
     ];
 
@@ -49,7 +49,7 @@ const PendingTasks = () => {
     };
 
     return (
-        <div className="space-y-4 shadow-lg p-6 rounded-2xl ">
+        <div className="space-y-4 shadow-md p-6 rounded-2xl ">
             <div className="flex items-center justify-between">
                 <div className="flex">
                     <MdOutlinePendingActions className="text-gray-400 text-xl "/>
@@ -62,7 +62,7 @@ const PendingTasks = () => {
             </div>
             {/*<h2 className="font-semibold text-xl">Pending Tasks</h2>*/}
             {tasks.map((task, index) => (
-                <div key={index} className=" p-3 flex border border-gray-400 rounded-2xl justify-between items-start">
+                <div key={index} className=" p-3 flex border border-[#A1A3AB] rounded-2xl justify-between items-start">
                     {/* Circle matching status */}
                     <FaRegCircle className={`mt-1 font-bold ${getStatusColor(task.status)}`}/>
                     <div className="flex-1 px-4">
@@ -72,10 +72,10 @@ const PendingTasks = () => {
                             {task.imageSrc && (
                                 <Image
                                     src={task.imageSrc}
-                                    width={36}
-                                    height={36}
+                                    width={80}
+                                    height={60}
                                     alt={task.title}
-                                    className="w-10 h-10 rounded-md"
+                                    className=" h-20 w-20 rounded-md"
                                 />
                             )}
                         </div>
