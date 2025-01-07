@@ -1,8 +1,19 @@
 import React from "react";
-import { TfiMore } from "react-icons/tfi";
+import {TfiMore} from "react-icons/tfi";
 import Image from "next/image";
 
-export const tasks = [
+export interface Task {
+    title: string;
+    description: string;
+    objective: string;
+    additionalNotes: string;
+    priority: string;
+    status: string;
+    createdOn: string;
+    imageSrc?: string;
+}
+
+export const tasks: Task[] = [
     {
         title: "Update Documentation",
         description:
@@ -49,8 +60,8 @@ const PendingTasks = ({
                           onTaskClick,
                           selectedTask,
                       }: {
-    onTaskClick?: (task: any) => void;
-    selectedTask?: any;
+    onTaskClick?: (task: Task) => void;
+    selectedTask?: Task;
 }) => {
     const getStatusColor = (status: string) => {
         switch (status) {
