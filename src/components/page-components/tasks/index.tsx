@@ -2,6 +2,7 @@ import PendingTasks from "@/components/page-components/tasks/pending-tasks";
 import CompletedTasks from "@/components/page-components/tasks/completed-tasks";
 import {MdWavingHand} from "react-icons/md";
 import TaskProgress from "@/components/page-components/tasks/task-progress";
+import SimplePendingTasksPage from "@/components/page-components/tasks/pending-task-list";
 
 const ToDoTasks = () => {
     return (
@@ -11,7 +12,7 @@ const ToDoTasks = () => {
                 <MdWavingHand className="text-yellow-400" />
             </div>
             <div className="flex justify-between space-x-8  items-start border border-[#A1A3AB] p-8 m-12">
-                <PendingTasks/>
+                <SimplePendingTasksPage/>
                 <div className="flex flex-col left-6 space-y-4">
                     <TaskProgress />
                     <CompletedTasks/>

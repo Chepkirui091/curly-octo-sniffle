@@ -38,11 +38,11 @@ const TaskProgress = () => {
     ];
 
     return (
-        <div className="shadow-md p-6 rounded-2xl w-full">
+        <div className="shadow-md rounded-2xl w-full">
             <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 ml-6">
                     <HiOutlineClipboardDocumentCheck className="text-gray-400 text-xl" />
-                    <h1 className="text-md text-[#FF6767]">Task Progress</h1>
+                    <h1 className="text-md text-[#FF6767] ">Task Progress</h1>
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
