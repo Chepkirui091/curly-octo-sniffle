@@ -38,14 +38,14 @@ const TaskProgress = () => {
     ];
 
     return (
-        <div className="shadow-md rounded-2xl w-full">
+        <div className="shadow-md rounded-2xl w-full p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2 ml-6">
                     <HiOutlineClipboardDocumentCheck className="text-gray-400 text-xl" />
                     <h1 className="text-md text-[#FF6767] ">Task Progress</h1>
                 </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {data.map((entry, index) => {
                     const percentage = ((entry.value / totalTasks) * 100).toFixed(1);
                     const chartData = [
@@ -54,8 +54,8 @@ const TaskProgress = () => {
                     ];
 
                     return (
-                        <div key={index} className="relative p-4 ">
-                            <PieChart width={200} height={200}>
+                        <div key={index} className="relative p-4 flex flex-col items-center">
+                            <PieChart width={160} height={160} className="mx-auto sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
                                 <Pie
                                     dataKey="value"
                                     data={chartData}
@@ -72,8 +72,8 @@ const TaskProgress = () => {
                                     ))}
                                 </Pie>
                             </PieChart>
-                            <div className="absolute top-1/2 left-1/2 transform -translate-x-6 -translate-y-8 text-center">
-                                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{percentage}%</h1>
+                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                                <h1 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">{percentage}%</h1>
                             </div>
                             <div className="mt-4 flex justify-center items-center gap-2">
                                 <div

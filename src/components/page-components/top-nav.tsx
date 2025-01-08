@@ -12,7 +12,7 @@ const TopNav = () => {
 
     return (
         <div className="dark:bg-gray-800 bg-[#F8F8F8] shadow-xl text-white p-4 flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+            <div className=" ml-20">
                 <Logo/>
             </div>
 
