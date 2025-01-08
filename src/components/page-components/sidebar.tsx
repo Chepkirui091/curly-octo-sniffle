@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { FaCog, FaExclamation, FaBars, FaTimes } from 'react-icons/fa';
+import { FaCog, FaExclamation } from 'react-icons/fa';
 import { LuListCollapse } from "react-icons/lu";
 import { BiSidebar, BiTask } from "react-icons/bi";
 import { MdDashboard, MdLogout, MdOutlineHelp } from "react-icons/md";
