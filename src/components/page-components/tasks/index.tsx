@@ -10,9 +10,11 @@ const ToDoTasks = () => {
                 <h1>Welcome back, Emmanuel </h1>
                 <MdWavingHand className="text-yellow-400" />
             </div>
-            <div className="flex justify-between space-x-8  items-start border border-[#A1A3AB] p-8 m-12">
-                <SimplePendingTasksPage/>
-                <div className="flex flex-col left-6 space-y-4">
+            <div className="lg:flex justify-between space-x-8  items-start border border-[#A1A3AB] p-8 m-12">
+                <div className="w-full lg:w-1/3">
+                    <SimplePendingTasksPage />
+                </div>
+                <div className="flex flex-col left-6 space-y-4 w-full lg:w-2/3">
                     <TaskProgress />
                     <CompletedTasks/>
                 </div>

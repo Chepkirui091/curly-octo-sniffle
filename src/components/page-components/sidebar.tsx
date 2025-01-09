@@ -25,7 +25,7 @@ export default function Sidebar() {
                 {/* Sidebar */}
                 {isOpen && (
                     <div
-                        className="w-[270px] text-white flex flex-col mt-20 rounded dark:bg-gray-800 bg-black transition-transform duration-300 ease-in-out"
+                        className="w-[270px]  text-white flex flex-col mt-20 rounded dark:bg-gray-800 bg-black transition-transform duration-300 ease-in-out"
                     >
                         {/* User Profile */}
                         <div className="relative pt-12 pb-4 flex flex-col items-center">

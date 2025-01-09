@@ -14,10 +14,8 @@ const TaskProgress = () => {
         { title: "Draft Blog Post", status: "Not Started" },
     ];
 
-    // Define the type for task statuses
     type TaskStatus = "In Progress" | "Completed" | "Not Started";
 
-    // Task statuses and counts
     const totalTasks = tasks.length;
     const statusCounts: Record<TaskStatus, number> = tasks.reduce(
         (counts, task) => {
@@ -42,10 +40,10 @@ const TaskProgress = () => {
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2 ml-6">
                     <HiOutlineClipboardDocumentCheck className="text-gray-400 text-xl" />
-                    <h1 className="text-md text-[#FF6767] ">Task Progress</h1>
+                    <h1 className="text-md text-[#FF6767]">Task Progress</h1>
                 </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                 {data.map((entry, index) => {
                     const percentage = ((entry.value / totalTasks) * 100).toFixed(1);
                     const chartData = [
@@ -55,7 +53,11 @@ const TaskProgress = () => {
 
                     return (
                         <div key={index} className="relative p-4 flex flex-col items-center">
-                            <PieChart width={160} height={160} className="mx-auto sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
+                            <PieChart
+                                width={160}
+                                height={160}
+                                className="mx-auto sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56"
+                            >
                                 <Pie
                                     dataKey="value"
                                     data={chartData}

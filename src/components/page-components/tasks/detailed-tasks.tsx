@@ -29,8 +29,8 @@ const DetailedTaskPage = () => {
 
     return (
         <div className="p-4 mt-6 space-y-6">
-            <div className="flex gap-6">
-                <div className="rounded-2xl border shadow-md p-6">
+            <div className="lg:flex gap-8">
+                <div className="rounded-2xl w-full lg:w-1/3 border shadow-md p-6">
                     <h1 className="font-bold mb-4">My Tasks</h1>
                     <PendingTasks
                         onTaskClick={setSelectedTask}
@@ -40,7 +40,7 @@ const DetailedTaskPage = () => {
 
                 {/* Task Details */}
                 {selectedTask && (
-                    <div className="w-1/2 shadow-md p-6 rounded-2xl border space-y-4">
+                    <div className="lg:w-2/3 shadow-md p-6 w-full rounded-2xl border space-y-4">
                         <div className="flex gap-6">
                             {selectedTask.imageSrc && (
                                 <Image
