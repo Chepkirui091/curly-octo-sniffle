@@ -27,7 +27,8 @@ const PendingTaskList = () => {
                     </div>
                 </div>
 
-                <PendingTasks />
+                <PendingTasks tasks={[]}
+                />
             </div>
 
             {/* Task Creation Dialog */}

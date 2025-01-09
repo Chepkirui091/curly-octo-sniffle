@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PendingTasks from "@/components/page-components/tasks/pending-tasks";
-import {deleteTask, Task} from "@/api/task-api";
+import { deleteTask, Task } from "@/api/task-api";
 import Image from "next/image";
 import { MdDelete } from "react-icons/md";
 import { RiEditBoxFill } from "react-icons/ri";
@@ -11,37 +11,45 @@ const DetailedTaskPage = () => {
 
     const handleTasksFetched = (fetchedTasks: Task[]) => {
         setTasks(fetchedTasks);
-        setSelectedTask(fetchedTasks[0]);
+        setSelectedTask((prevSelected) =>
+            fetchedTasks.find((task) => task.id === prevSelected?.id) || fetchedTasks[0] || null
+        );
     };
 
     const handleDelete = async () => {
         if (selectedTask) {
             try {
                 await deleteTask(selectedTask.id);
-                setTasks(tasks.filter(task => task.id !== selectedTask.id));
-                setSelectedTask(null);
+                setSelectedTask(null); // Clear selection
+                // Trigger task refetch
+                const fetchEvent = new CustomEvent("refetchTasks");
+                window.dispatchEvent(fetchEvent);
             } catch (error) {
                 console.error("Error deleting task:", error);
+                alert("Failed to delete the task."); // Replace with toast notification if necessary
             }
         }
     };
 
-
     return (
         <div className="p-4 mt-6 space-y-6">
             <div className="lg:flex gap-8">
-                <div className="rounded-2xl w-full lg:w-1/3 border shadow-md p-6">
+                {/* Task List */}
+                <div className="rounded-2xl w-full lg:w-[40%] border shadow-md p-6">
                     <h1 className="font-bold mb-4">My Tasks</h1>
                     <PendingTasks
                         onTaskClick={setSelectedTask}
+                        tasks={tasks}
+                        selectedTask={selectedTask}
                         onTasksFetched={handleTasksFetched}
                     />
                 </div>
 
                 {/* Task Details */}
-                {selectedTask && (
-                    <div className="lg:w-2/3 shadow-md p-6 w-full rounded-2xl border space-y-4">
-                        <div className="flex gap-6">
+                {selectedTask ? (
+                    <div className="lg:w-[60%] w-full shadow-md p-6 rounded-2xl border space-y-4">
+                        {/* Selected Task Details */}
+                        <div className="lg:flex gap-6">
                             {selectedTask.imageSrc && (
                                 <Image
                                     src={selectedTask.imageSrc}
@@ -67,42 +75,42 @@ const DetailedTaskPage = () => {
                             </div>
                         </div>
 
-                        <div className="mt-4 flex">
-                            <p className="text-gray-600 font-semibold">
-                                Task Title:{" "}
-                                <span className="font-normal">{selectedTask.title}</span>
-                            </p>
+                        {/* Additional Details */}
+                        <div className="mt-2">
+                            <h3 className="font-semibold text-gray-600">Task Title: <span className="font-normal">{selectedTask.title}</span> </h3>
                         </div>
-
-                        <div className="mt-4 flex">
-                            <p className="text-gray-600 font-semibold">
-                                Objective:{" "}
-                                <span className="font-normal">{selectedTask.objective}</span>
-                            </p>
+                        <div className="mt-2">
+                            <h3 className="font-semibold text-gray-600">Task Objective: <span className="font-normal">{selectedTask.objective}</span> </h3>
                         </div>
-
-                        <div className="mt-4 flex">
-                            <p className="text-gray-600 font-semibold">
-                                Task Description:{" "}
-                                <span className="font-normal">{selectedTask.description}</span>
-                            </p>
+                        <div className="mt-2">
+                            <h3 className="font-semibold text-gray-600">Task Description: <span className="font-normal">{selectedTask.description}</span> </h3>
                         </div>
-
-                        <div className="mt-4">
+                        <div className="mt-2">
                             <h3 className="font-semibold text-gray-600">Additional Notes: </h3>
                             <p className="text-gray-600 whitespace-pre-wrap">
                                 {selectedTask.additionalNotes}
                             </p>
                         </div>
 
-                        <div className="flex justify-end gap-6 ">
-                            <button onClick={handleDelete} className="p-2 bg-[#FF6767] text-white rounded-md">
-                                <MdDelete />
+                        {/* Actions */}
+                        <div className="flex justify-end gap-6">
+                            <button
+                                onClick={handleDelete}
+                                className="p-2 bg-[#FF6767] text-white rounded-md"
+                            >
+                                <MdDelete/>
                             </button>
-                            <div className="p-2 bg-[#FF6767] text-white rounded-md">
-                                <RiEditBoxFill />
-                            </div>
+                            <button
+                                onClick={() => console.log("Edit Task")} // Replace with actual edit logic
+                                className="p-2 bg-[#FF6767] text-white rounded-md"
+                            >
+                                <RiEditBoxFill/>
+                            </button>
                         </div>
+                    </div>
+                ) : (
+                    <div className="lg:w-[60%] w-full p-6 rounded-2xl border text-center text-gray-600">
+                        No task selected. Please select a task from the list.
                     </div>
                 )}
             </div>

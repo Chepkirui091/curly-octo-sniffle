@@ -11,10 +11,10 @@ const ToDoTasks = () => {
                 <MdWavingHand className="text-yellow-400" />
             </div>
             <div className="lg:flex justify-between space-x-8  items-start border border-[#A1A3AB] p-8 m-12">
-                <div className="w-full lg:w-1/3">
+                <div className="w-full lg:w-1/2">
                     <SimplePendingTasksPage />
                 </div>
-                <div className="flex flex-col left-6 space-y-4 w-full lg:w-2/3">
+                <div className="flex flex-col left-6 space-y-4 w-full lg:w-1/2">
                     <TaskProgress />
                     <CompletedTasks/>
                 </div>

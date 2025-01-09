@@ -1,6 +1,6 @@
 const API_ENDPOINTS = {
-    TASKS: "/todos",
-    TASK_BY_ID: (id: number) => `/todos/${id}`,
+    TASKS: "/tasks",
+    TASK_BY_ID: (id: number) => `/tasks/${id}`,
 
 };
 

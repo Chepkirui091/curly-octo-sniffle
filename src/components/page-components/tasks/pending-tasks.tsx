@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {TfiMore} from "react-icons/tfi";
 import Image from "next/image";
 import {fetchTasks, Task} from "@/api/task-api";
@@ -9,27 +9,40 @@ const PendingTasks = ({
                           onTasksFetched,
                       }: {
     onTaskClick?: (task: Task) => void;
-    selectedTask?: Task;
+    selectedTask?: Task | null;
+    tasks: Task[];
     onTasksFetched?: (tasks: Task[]) => void;
 }) => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
+    const loadTasks = useCallback(async () => {
+        try {
+            const fetchedTasks = await fetchTasks();
+            setTasks(fetchedTasks);
+            onTasksFetched?.(fetchedTasks);
+        } catch (error) {
+            console.error("Failed to fetch tasks:", error);
+        } finally {
+            setLoading(false);
+        }
+    }, [onTasksFetched]);
+
     useEffect(() => {
-        const loadTasks = async () => {
-            try {
-                const fetchedTasks = await fetchTasks();
-                setTasks(fetchedTasks);
-                onTasksFetched?.(fetchedTasks);
-            } catch (error) {
-                console.error("Failed to fetch tasks:", error);
-            } finally {
-                setLoading(false);
-            }
+        loadTasks();
+
+        const handleRefetch = () => {
+            setLoading(true);
+            loadTasks();
         };
 
-        loadTasks();
-    }, []);
+        window.addEventListener("refetchTasks", handleRefetch);
+
+        return () => {
+            window.removeEventListener("refetchTasks", handleRefetch);
+        };
+    }, [loadTasks]);
+
 
     const getStatusColor = (status: string) => {
         switch (status) {
@@ -109,6 +122,12 @@ const PendingTasks = ({
                                 <span className="font-medium">Status:</span>
                                 <span className={`${getStatusColor(task.status)}`}>
                                     {task.status}
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-1 text-gray-600">
+                                <span className="font-medium">Created On:</span>
+                                <span>
+                                    {task.createdOn}
                                 </span>
                             </div>
                         </div>

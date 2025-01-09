@@ -1,7 +1,11 @@
+import VitalTasksPage from "@/components/page-components/tasks/vital-tasks-page";
+
 const VitalTask = () => {
     return (
         <>
-        <div>erfuygaef</div>
+        <div>
+            <VitalTasksPage />
+        </div>
         </>
     )
 }
