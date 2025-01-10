@@ -3,7 +3,7 @@ import DetailedTaskPage from "@/components/page-components/tasks/detailed-tasks"
 const MyTask = () => {
     return (
         <>
-            <div className="m-12">
+            <div className="lg:m-12">
                 <DetailedTaskPage />
             </div>
         </>

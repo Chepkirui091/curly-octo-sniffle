@@ -32,7 +32,7 @@ const DetailedTaskPage = () => {
     };
 
     return (
-        <div className="p-4 mt-6 space-y-6">
+        <div className="p-4 lg:mt-6 sm:mt-4 space-y-6">
             <div className="lg:flex gap-8">
                 {/* Task List */}
                 <div className="rounded-2xl w-full lg:w-[40%] border shadow-md p-6">
