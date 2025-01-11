@@ -21,7 +21,6 @@ const DetailedTaskPage = () => {
             try {
                 await deleteTask(selectedTask.id);
                 setSelectedTask(null); // Clear selection
-                // Trigger task refetch
                 const fetchEvent = new CustomEvent("refetchTasks");
                 window.dispatchEvent(fetchEvent);
             } catch (error) {

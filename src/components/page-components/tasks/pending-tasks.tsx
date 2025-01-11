@@ -83,7 +83,7 @@ const PendingTasks = ({
                     key={task.id}
                     className={`p-3 border ${
                         selectedTask?.title === task.title
-                            ? "border-[#A1A3AB] bg-gray-200" 
+                            ? "border-[#A1A3AB] bg-gray-200 dark:bg-gray-800" 
                             : "border-[#A1A3AB]"
                     } rounded-2xl gap-4 ${
                         onTaskClick ? "cursor-pointer" : ""

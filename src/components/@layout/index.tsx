@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "@/components/@layout/sidebar";
-import TopNav from "@/components/page-components/top-nav";
+import ModernTopNav from "@/components/@layout/top-nav-bar";
+import ModernSidebar from "@/components/@layout/sidebar/modern-sidebar";
 
 
 export const drawerWidth = 258;
@@ -26,26 +26,26 @@ function ModernLayout({ children, title }: ModernLayoutProps) {
     };
 
     return (
-        <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
-            {/* Sidebar */}
-            <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-            {/* Main Content */}
-            <div
-                className={`flex flex-col flex-grow transition-all duration-300 ${
-                    isSidebarOpen ? `ml-${drawerWidth}px` : "ml-0"
-                }`}
-            >
-                {/* Top Navigation */}
-                <TopNav title={title || "Dashboard"} />
 
-                {/* Content */}
-                <main className="p-6 flex-grow">
-                    {children}
-                </main>
+
+            <div className="flex flex-col h-screen dark:bg-darkBackground">
+
+                <ModernTopNav title={title || "Dashboard"}/>
+
+
+                {/* Main Content */}
+                <div className="flex flex-1 overflow-hidden ">
+
+                    <ModernSidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
+
+                    {/* Content */}
+                    <main className="flex-1 lg:p-6 overflow-auto">
+                        {children}
+                    </main>
+                </div>
             </div>
-        </div>
-    );
-}
+            );
+            }
 
-export default ModernLayout;
+            export default ModernLayout;

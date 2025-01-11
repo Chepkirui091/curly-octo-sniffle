@@ -1,10 +1,13 @@
 import VitalTasksPage from "@/components/page-components/tasks/vital-tasks-page";
+import ModernLayout from "@/components/@layout";
 
 const VitalTask = () => {
     return (
         <>
         <div>
-            <VitalTasksPage />
+            <ModernLayout>
+                <VitalTasksPage />
+            </ModernLayout>
         </div>
         </>
     )
