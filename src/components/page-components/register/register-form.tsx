@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Logo } from "../../logo";
 import React from "react";
+import Link from "next/link";
 
 type RegisterFormProps = {
   onRegister: (
@@ -27,7 +27,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
       confirmPassword: "",
       agreeToTerms: false,
     },
-    validationSchema: Yup.object().shape({
+    validationSchema: Yup.object({
       firstname: Yup.string().required("First Name is required!"),
       lastname: Yup.string().required("Last Name is required!"),
       username: Yup.string().required("Username is required!"),
@@ -45,161 +45,65 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
   });
 
   return (
-      <form
-          onSubmit={formik.handleSubmit}
-          className="shadow-lg bg-white dark:bg-darkBackground rounded-lg px-8 py-10 w-full max-w-lg mx-auto"
-      >
-        {/*<div className="mb-6 text-center">*/}
-        {/*  <Logo />*/}
-        {/*</div>*/}
+      <form onSubmit={formik.handleSubmit} className="shadow-lg bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-lg mx-auto">
+        <p className="text-lg font-medium text-center text-gray-700 dark:text-gray-300 mb-6">Create Your Account</p>
 
-        <p className="text-sm text-center text-gray-600 mb-6">Create your account</p>
+        {/** Input Fields */}
+        {["firstname", "lastname", "username", "email", "password", "confirmPassword"].map((field, idx) => (
+            <div className="mb-4 dark:bg-gray-700" key={idx}>
+              <input
+                  type={field.includes("password") ? "password" : "text"}
+                  id={field}
+                  name={field}
+                  placeholder={field
+                      .replace(/([A-Z])/g, " $1")
+                      .replace(/^./, (str) => str.toUpperCase())}
+                  value={formik.values[field as keyof typeof formik.values] as string}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`mt-1 p-3 block w-full rounded-md border ${
+                      formik.touched[field as keyof typeof formik.touched] &&
+                      formik.errors[field as keyof typeof formik.errors]
+                          ? "border-red-500"
+                          : "border-gray-300"
+                  } shadow-sm focus:ring-blue-500 focus:border-blue-500`}
+              />
+              {formik.touched[field as keyof typeof formik.touched] &&
+                  formik.errors[field as keyof typeof formik.errors] && (
+                      <p className="mt-1 text-sm text-red-500">{formik.errors[field as keyof typeof formik.errors]}</p>
+                  )}
+            </div>
+        ))}
 
-        {/* First Name */}
+
+        {/** Agree to Terms */}
         <div className="mb-4">
-          <input
-              type="text"
-              id="firstname"
-              placeholder="First Name"
-              name="firstname"
-              value={formik.values.firstname}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={`mt-1 p-3 block w-full rounded-md border ${
-                  formik.touched.firstname && formik.errors.firstname ? "border-red-500" : "border-gray-300"
-              } shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-          />
-          {formik.touched.firstname && formik.errors.firstname && (
-              <p className="mt-1 text-sm text-red-500">{formik.errors.firstname}</p>
-          )}
-        </div>
-
-        {/* Last Name */}
-        <div className="mb-4">
-          <input
-              type="text"
-              id="lastname"
-              placeholder="Last Name"
-              name="lastname"
-              value={formik.values.lastname}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={`mt-1 p-3 block w-full rounded-md border ${
-                  formik.touched.lastname && formik.errors.lastname ? "border-red-500" : "border-gray-300"
-              } shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-          />
-          {formik.touched.lastname && formik.errors.lastname && (
-              <p className="mt-1 text-sm text-red-500">{formik.errors.lastname}</p>
-          )}
-        </div>
-
-        {/* Username */}
-        <div className="mb-4">
-          <input
-              type="text"
-              id="username"
-              placeholder="Username"
-              name="username"
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={`mt-1 p-3 block w-full rounded-md border ${
-                  formik.touched.username && formik.errors.username ? "border-red-500" : "border-gray-300"
-              } shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-          />
-          {formik.touched.username && formik.errors.username && (
-              <p className="mt-1 text-sm text-red-500">{formik.errors.username}</p>
-          )}
-        </div>
-
-        {/* Email */}
-        <div className="mb-4">
-          <input
-              type="email"
-              id="email"
-              placeholder="Email"
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={`mt-1 p-3 block w-full rounded-md border ${
-                  formik.touched.email && formik.errors.email ? "border-red-500" : "border-gray-300"
-              } shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-          />
-          {formik.touched.email && formik.errors.email && (
-              <p className="mt-1 text-sm text-red-500">{formik.errors.email}</p>
-          )}
-        </div>
-
-        {/* Password */}
-        <div className="mb-4">
-          <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={`mt-1 p-3 block w-full rounded-md border ${
-                  formik.touched.password && formik.errors.password ? "border-red-500" : "border-gray-300"
-              } shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-          />
-          {formik.touched.password && formik.errors.password && (
-              <p className="mt-1 text-sm text-red-500">{formik.errors.password}</p>
-          )}
-        </div>
-
-        {/* Confirm Password */}
-        <div className="mb-4">
-          <input
-              type="password"
-              id="confirmPassword"
-              placeholder="Confirm Password"
-              name="confirmPassword"
-              value={formik.values.confirmPassword}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={`mt-1 block w-full p-3 rounded-md border ${
-                  formik.touched.confirmPassword && formik.errors.confirmPassword ? "border-red-500" : "border-gray-300"
-              } shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-          />
-          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-              <p className="mt-1 text-sm text-red-500">{formik.errors.confirmPassword}</p>
-          )}
-        </div>
-
-        {/* Agree to Terms */}
-        <div className="mb-4">
-          <label className="inline-flex items-center">
+          <label className="flex items-center space-x-2">3652
             <input
                 type="checkbox"
                 name="agreeToTerms"
                 checked={formik.values.agreeToTerms}
                 onChange={formik.handleChange}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                className="h-4 w-4 dark:bg-gray-700 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
             />
-            <span className="ml-2 text-sm text-gray-600">I agree to all terms and conditions</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">I agree to all terms and conditions</span>
           </label>
           {formik.touched.agreeToTerms && formik.errors.agreeToTerms && (
               <p className="mt-1 text-sm text-red-500">{formik.errors.agreeToTerms}</p>
           )}
         </div>
 
-        {/* Submit Button */}
-        <button
-            type="submit"
-            className="w-full p-3 text-white text-sm font-semibold rounded bg-blue-600 hover:bg-blue-700"
-        >
+        {/** Submit Button */}
+        <button type="submit" className="w-full p-3 text-white text-sm font-semibold rounded bg-blue-600 hover:bg-blue-700">
           Register
         </button>
 
-        {/* Already have an account */}
-        <p className="mt-4 text-center text-sm text-gray-600">
+        {/** Already have an account */}
+        <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-600 hover:underline">
+          <Link href="/login" className="text-blue-600 hover:underline">
             Log in
-          </a>
+          </Link>
         </p>
       </form>
   );

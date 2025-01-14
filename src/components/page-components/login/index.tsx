@@ -36,7 +36,7 @@ const Login: React.FC = () => {
     // };
 
     return (
-        <div className="grid h-screen grid-cols-1 md:grid-cols-2 gap-4 items-center"
+        <div className="grid h-screen grid-cols-1 md:grid-cols-2 gap-4 items-center overflow-hidden"
              style={{
                  backgroundImage: "url('/static/loginbg.jpg')",
                  backgroundSize: 'cover',

@@ -28,8 +28,8 @@ const LoginLottie = () => {
     return (
         <Lottie
             options={defaultOptions}
-            height={1000}
-            width={1000}
+            height={250}
+            width={250}
             isClickToPauseDisabled={true}
         />
     );
