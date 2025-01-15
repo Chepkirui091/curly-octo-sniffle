@@ -45,7 +45,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
   });
 
   return (
-      <form onSubmit={formik.handleSubmit} className="shadow-lg bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-lg mx-auto">
+      <form onSubmit={formik.handleSubmit} className="shadow-lg rounded-lg p-8 m-16">
         <p className="text-lg font-medium text-center text-gray-700 dark:text-gray-300 mb-6">Create Your Account</p>
 
         {/** Input Fields */}
@@ -78,7 +78,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
 
         {/** Agree to Terms */}
         <div className="mb-4">
-          <label className="flex items-center space-x-2">3652
+          <label className="flex items-center space-x-2">
             <input
                 type="checkbox"
                 name="agreeToTerms"

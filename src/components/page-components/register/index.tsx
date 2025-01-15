@@ -13,16 +13,11 @@ const Register = () => {
     };
 
     return (
-        <div className="flex h-screen items-center justify-center overflow-hidden md:flex-row flex-col">
-            {/* Register Banner */}
-            <div className=" md:flex flex-1 p-4">
-                <RegisterBanner />
-            </div>
+        <div className="bg-white  rounded-md flex w-1/2"
+        >
+            <RegisterForm onRegister={handleOnRegister}/>
+            <RegisterBanner/>
 
-            {/* Form Section */}
-            <div className="z-10 flex-1">
-                <RegisterForm onRegister={handleOnRegister} />
-            </div>
         </div>
     );
 };

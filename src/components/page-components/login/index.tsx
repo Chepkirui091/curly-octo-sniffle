@@ -36,14 +36,16 @@ const Login: React.FC = () => {
     // };
 
     return (
-        <div className="grid h-screen grid-cols-1 md:grid-cols-2 gap-4 items-center overflow-hidden"
-             style={{
-                 backgroundImage: "url('/static/loginbg.jpg')",
-                 backgroundSize: 'cover',
-                 backgroundPosition: 'center',
-             }}
-
+        <div
+            className="grid h-screen grid-cols-1 md:grid-cols-2 gap-4 items-center overflow-hidden"
+            style={{
+                backgroundImage: "url('/static/loginbg.png')",
+                backgroundSize: 'auto 25%', // Adjust the size (e.g., 25% of height)
+                backgroundPosition: 'top center', // Position it at the top
+                backgroundRepeat: 'no-repeat', // Prevent it from repeating
+            }}
         >
+
 
             {/* Login Banner */}
             <div className="hidden md:flex p-4">
